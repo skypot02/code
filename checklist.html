@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Name and Address Form</title>
+</head>
+<body>
+ 
+    <form id="nameAddressForm">
+        <label for="name">Patient Name(Image):</label>
+        <input type="text" id="name" name="name" required><br><br>
+        <label for="DOB">Date of Birth:  </label>
+        <input type="text" id="DOB" name="dateofbirth" required><br><br>
+        <label for="DOS">Date of service is:</label>
+        <input type="text" id="DOS" name="DOS" required><br><br>
+        <label for="Group">Group number base on bluestar: </label>
+        <input type="text" id="Group" name="Group" required><br><br>
+        <label for="Subscriber">Subscriber number:</label>
+        <input type="text" id="Subscriber" name="Subscriber" required><br><br>
+        <label for="Section">Section number base on bluestar:  </label>
+        <input type="text" id="Section" name="Section" required><br><br>
+        <label for="address">Corporate Receive date:</label>
+        <input type="Corporate" id="Corporate" name="Corporate" required><br><br>
+        <label for="Disposition">Disposition date:</label>
+        <input type="text" id="Disposition" name="Disposition" required><br><br>
+        
+        <label for="Appeal">DCN / Pre-Service </label>
+        <input type="text" id="Appeal" name="Appeal" required><br><br>
+         
+        
+        
+         <label for="Determination">Determination:</label>
+        <select id="Determination" name="Determination">
+        	<option value="blank"> </option>
+            <option value="Upheld">Upheld</option>
+            <option value="Overturn">Overturn </option>
+            <option value="Partial">Partial Overturn</option>
+            <option value="Appeal Right Exhaust">Appeal right exhaust</option>
+            <option value="Not a Valid Request">Not a Valid Request</option>
+            
+        </select><br><br>
+
+
+        <label for="Alerts">Alerts:</label>
+        <select id="Alerts" name="Alerts">
+        	<option value="blank"> </option>
+            <option value="NO HIPAA ALERTS">No HIPAA Alerts </option>
+            <option value="HIPAA ALERTS"> HIPAA Alerts  </option> 
+            
+        </select><br><br>
+        
+        
+
+        <input type="button" value="Submit" onclick="displayResult()">
+        <input type="button" value="Clear All" onclick="clearFields()">
+    </form>
+
+    <br><br>
+
+    <label for="result">Notes </label> <br>
+    <textarea id="result" rows="20" cols="100" readonly></textarea>
+     
+
+    <script>
+        function displayResult() {
+            var name = document.getElementById("name").value;
+            var DOB = document.getElementById("DOB").value;
+            var DOS = document.getElementById("DOS").value;
+            var Group = document.getElementById("Group").value;
+            var Subscriber = document.getElementById("Subscriber").value;
+            var Section = document.getElementById("Section").value;
+            var Corporate = document.getElementById("Corporate").value;
+            var Disposition = document.getElementById("Disposition").value;
+            
+            var Appeal = document.getElementById("Appeal").value;
+            var Determination =  document.getElementById("Determination").value;
+            var Alerts = document.getElementById("Alerts").value;
+             
+
+            var result = "We received an appeal regarding" + " " + name + " " +  "for the denial of" + " " + Appeal + " " + "." + " " + Alerts + "\n" + "\n" + "After review, the decision to" + " " + Determination + " " + "the prior denial is based on the medical policy listed in the MD Rationale." + "\n" + "\n" + "\n" + "\n" + "\n" + "The information about this appeal was" + "\n" + "\n" + "Patient Name: " + name   + "\n" +  "Date of birth" + ": " + DOB +  "\n" + "Date of Service" + ": " + DOS + "\n" + "group number base on bluestar: " +   + Group + "\n" + "section number base on bluestar: " + Section + "\n" +  "subscriber number: " + Subscriber + "\n" + "\n" + "Corporate Receive date: " + Corporate +  "\n" +  "Disposition date: " + Disposition + "\n" + "\n" + Alerts + "\n" +  "\n" +  "\n" +  "\n"  + "DETERMINATION CREATED . . . ." ;
+         
+            document.getElementById("result").value = result;
+        }
+
+        function clearFields() {
+            document.getElementById("name").value = "";
+            document.getElementById("DOB").value = "";
+            document.getElementById("DOS").value = "";
+            document.getElementById("Group").value = "";
+            document.getElementById("Subscriber").value = "";
+            document.getElementById("Section").value = "";
+            document.getElementById("Corporate").value = "";
+            document.getElementById("Disposition").value = "";
+            document.getElementById("Appeal").value = "";
+            document.getElementById("Determination").value = "";
+            document.getElementById("Alerts").value = "";
+
+            document.getElementById("result").value = "";
+        }
+
+	function copyToClipboard() {
+            var resultTextbox = document.getElementById("result");
+            resultTextbox.select();
+            document.execCommand("copy");
+            alert("Text copied to clipboard: " + resultTextbox.value);
+        }
+    </script> 
+
+<br><br>
+
+ <button id="copyButton" onclick="copyToClipboard()">Copy to Clipboard</button>
+
+ 
+    
+</body>
+</html>
