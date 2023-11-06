@@ -1,0 +1,167 @@
+
+
+<html>
+
+
+
+
+<body bgcolor="#80dfff">
+
+<title> Patient Simplified Rationale </title>
+
+<center>
+
+
+
+<script>
+function myFunction() {
+  var str = document.getElementById("txtfield").value; 
+  var res = str.replace(/your|you|we |HCSC|hcsc|Your|You|evicore|Evicore|We |Us |us | Us. | us. |ous /gi, function myFunction(x){
+  
+if(x=='your'){return x='the member&apos;s';}
+if(x=='you'){return x='the member';}
+if(x=='we '){return x='the reviewer&nbsp;'}
+if(x=='Us '){return x='The reviewer&nbsp;'}
+if(x=='us '){return x='the reviewer&nbsp;'}
+if(x=='ous '){return x='ous'}
+if(x==' Us. '){return x='The reviewer&nbsp;'}
+if(x==' us. '){return x='the reviewer&nbsp;'}
+if(x=='Your'){return x='The member&apos;s';}
+if(x=='You'){return x='The member';}
+if(x=='We '){return x='The reviewer&nbsp;'}
+if(x=='HCSC'){return x='BCBS(IL, TX)'}
+if(x=='hcsc'){return x='BCBS(IL, TX)'}
+if(x=='Evicore'){return x='BCBS(IL, TX)'}
+if(x=='evicore'){return x='BCBS(IL, TX)'}
+else{return x;}
+ 
+ Subcutaneous
+ 
+});
+ 
+  document.getElementById("rationale").innerHTML = res;
+}
+
+function clearContent()
+{
+    document.getElementById("txtfield").value='';
+
+}
+
+</script>
+
+
+
+<h5>
+Text only change We to "The Reviewer" , You to "The member",  Your to "The member's" , HCSC to "BCBS(IL, TX)"</h5>
+
+<div style="border: 2px ridge; red "><div style="border: 3px double; #80dfff"><br>
+<textarea id="txtfield" name="txtfield" rows="20" cols="100" title="Please double check on MSword if there is a correction"  onkeyup="clean()" ></textarea>
+<br>
+
+
+
+<button onclick="myFunction()" title="Format items and the result apply on the buttom box"  >Reformat</button><br>
+<input type="button" value="Clear" title="Clear all text on the top"  onclick="clearContent()"> 
+</div></div>
+
+
+
+<div style="border: 2px inset white "><div style="border: 3px dashed black">
+<h4>Result</h4>
+
+
+<textarea disabled id="rationale"  rows="20" cols="100" title="You can copy and paste to word or Click with msword to download file "></textarea>
+<br>
+
+
+ 
+<button onclick=saveTextAsFile(rationale.value,'Rationale.doc')>Open with MS WORD</button>
+
+</div></div>
+
+
+
+<SCRIPT>
+function saveTextAsFile(textToWrite, fileNameToSaveAs)
+    {
+    	var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'}); 
+    	var downloadLink = document.createElement("a");
+    	downloadLink.download = fileNameToSaveAs;
+    	downloadLink.innerHTML = "Download File";
+    	if (window.webkitURL != null)
+    	{
+    		downloadLink.href = window.webkitURL.createObjectURL(textFileAsBlob);
+    	}
+    	else
+    	{
+    		
+    		downloadLink.href = window.URL.createObjectURL(textFileAsBlob);
+    		downloadLink.onclick = destroyClickedElement;
+    		downloadLink.style.display = "none";
+    		document.body.appendChild(downloadLink);
+    	}
+    
+    	downloadLink.click();
+    }
+    
+    
+    </SCRIPT>
+    
+	<script language="JavaScript">
+
+       window.onload = function () {
+           document.addEventListener("contextmenu", function (e) {
+               e.preventDefault();
+           }, false);
+           document.addEventListener("keydown", function (e) {
+               //document.onkeydown = function(e) {
+               // "I" key
+               if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+                   disabledEvent(e);
+               }
+               // "J" key
+               if (e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+                   disabledEvent(e);
+               }
+               // "S" key + macOS
+               if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+                   disabledEvent(e);
+               }
+               // "U" key
+               if (e.ctrlKey && e.keyCode == 85) {
+                   disabledEvent(e);
+               }
+               // "F12" key
+               if (event.keyCode == 123) {
+                   disabledEvent(e);
+               }
+           }, false);
+           function disabledEvent(e) {
+               if (e.stopPropagation) {
+                   e.stopPropagation();
+               } else if (window.event) {
+                   window.event.cancelBubble = true;
+               }
+               e.preventDefault();
+               return false;
+           }
+       }
+
+
+
+</script>
+	
+	
+	
+</center>
+</body>
+
+
+
+</html>
+
+
+
+
+
